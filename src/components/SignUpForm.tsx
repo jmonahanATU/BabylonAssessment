@@ -16,17 +16,23 @@ interface SignUpFormProps {
   onToggleMode: () => void;
 }
 
+/**
+ * SignUpForm Component
+ * Handles new user registration with Firebase Auth and Firestore
+ * Features: Full form validation, error handling, user data storage
+ */
 export function SignUpForm({ onToggleMode }: SignUpFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
 
+  // React Hook Form setup with comprehensive validation schema
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<AuthFormData>({
-    resolver: zodResolver(authFormSchema),
+    resolver: zodResolver(authFormSchema),//Uses full validation including name requirements
   });
 
   const onSubmit = async (data: AuthFormData) => {

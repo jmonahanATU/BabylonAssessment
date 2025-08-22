@@ -28,15 +28,15 @@ export function Homepage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen auth-bg">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-green-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Babylon Radio</h1>
+              <h1 className="text-2xl font-bold text-green-700">Babylon Radio</h1>
             </div>
-            <Button onClick={handleSignOut} variant="outline">
+            <Button onClick={handleSignOut} variant="outline" className="border-green-200 text-green-700 hover:bg-green-50">
               Logout
             </Button>
           </div>

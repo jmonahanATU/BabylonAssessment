@@ -12,6 +12,7 @@ import { Label } from './ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Alert, AlertDescription } from './ui/alert';
 
+//Validation schema for sign-in form - only needs email and password
 const signInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   password: z.string().min(1, 'Password is required'),
@@ -20,14 +21,21 @@ const signInSchema = z.object({
 type SignInFormData = z.infer<typeof signInSchema>;
 
 interface SignInFormProps {
-  onToggleMode: () => void;
+  onToggleMode: () => void;//Function to switch to sign-up form
 }
 
+/**
+ * SignInForm Component
+ * Handles user authentication for existing users
+ * Features: Form validation, error handling, loading states
+ */
 export function SignInForm({ onToggleMode }: SignInFormProps) {
+    //State management for loading and error states
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
 
+  //React Hook Form setup with Zod validation
   const {
     register,
     handleSubmit,
@@ -36,14 +44,21 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
     resolver: zodResolver(signInSchema),
   });
 
+  /**
+   * Handle form submission
+   * Attempts to sign in user with Firebase Auth
+   */
   const onSubmit = async (data: SignInFormData) => {
     setIsLoading(true);
     setError('');
 
     try {
+      // Call Firebase authentication service
       await signInUser(data.email, data.password);
+      // Redirect to homepage on successful login
       router.push('/');
     } catch (err: any) {
+      // Handle different types of authentication errors
       if (err.message.includes('auth/user-not-found') || err.message.includes('auth/invalid-credential')) {
         setError('No account found with this email. Please check your email or create an account.');
       } else if (err.message.includes('auth/wrong-password')) {
