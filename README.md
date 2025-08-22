@@ -14,13 +14,44 @@ It's like a digital door – you need to sign in to get inside, and once you're 
    ```bash
    git clone [your-repo-url]
    cd babylon-auth-app         
-3. **Install the pieces** the app needs:
+2. **Install the pieces** the app needs:
    ```bash
    npm install
-4. **Start the app:**
+## Set up Firebase Project
+
+## 3. Create a Firebase Project
+1. Go to [Firebase Console](https://console.firebase.google.com/).
+2. Create a new project or use an existing one.
+3. Enable **Authentication** with the **Email/Password** sign-in method.
+4. Enable **Firestore Database** (start in test mode).
+
+---
+
+## 4. Get Firebase Configuration
+1. In your Firebase project, go to **Project Settings**.
+2. Scroll to **Your apps** and click the **web icon (`</>`)**.
+3. Register your app and copy the **config object**.
+
+---
+
+## 5. Create Environment File
+1. Copy `.env.example` to `.env.local`:
+
+   ```bash
+   cp .env.example .env.local
+- Replace the placeholder values with your actual Firebase configuration:
+   ```env
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_actual_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+
+6. **Start the app:**
    ```bash
    npm run dev
-5. **Open your browser and go to http://localhost:3000**
+7. **Open your browser and go to http://localhost:3000**
 ---
 
 ## What You'll See
