@@ -2,7 +2,7 @@ export interface UserData {
   uid: string;
   email: string;
   fullName: string;
-  createdAt: Date;
+  createdAt: any; // Can be Firestore Timestamp or Date
 }
 
 export interface AuthFormData {

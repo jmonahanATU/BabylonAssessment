@@ -2,16 +2,16 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../contexts/AuthContext';
-import { Homepage } from '../components/Homepage';
+import { useAuth } from '../../contexts/AuthContext';
+import { LoginForm } from '../../components/LoginForm';
 
-export default function Page() {
+export default function LoginPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push('/login');
+    if (!loading && user) {
+      router.push('/');
     }
   }, [user, loading, router]);
 
@@ -23,9 +23,9 @@ export default function Page() {
     );
   }
 
-  if (!user) {
-    return null; // Will redirect to login
+  if (user) {
+    return null; // Will redirect to homepage
   }
 
-  return <Homepage />;
+  return <LoginForm />;
 }

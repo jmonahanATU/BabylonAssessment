@@ -60,7 +60,7 @@ export function Homepage() {
                 <strong>Email:</strong> {userData.email}
               </p>
               <p className="text-green-800">
-                <strong>Account Created:</strong> {userData.createdAt.toLocaleDateString()}
+                <strong>Account Created:</strong> {new Date(userData.createdAt).toLocaleDateString()}
               </p>
             </div>
             
