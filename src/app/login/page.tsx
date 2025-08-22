@@ -1,11 +1,16 @@
+// src/app/login/page.tsx
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../contexts/AuthContext';
-import { LoginForm } from '../../components/LoginForm';
+import { SignInForm } from '../../components/SignInForm';
+import { SignUpForm } from '../../components/SignUpForm';
+
+type AuthMode = 'signin' | 'signup';
 
 export default function LoginPage() {
+  const [mode, setMode] = useState<AuthMode>('signin');
   const { user, loading } = useAuth();
   const router = useRouter();
 
@@ -27,5 +32,20 @@ export default function LoginPage() {
     return null; // Will redirect to homepage
   }
 
-  return <LoginForm />;
+  const renderForm = () => {
+    switch (mode) {
+      case 'signin':
+        return <SignInForm onToggleMode={() => setMode('signup')} />;
+      case 'signup':
+        return <SignUpForm onToggleMode={() => setMode('signin')} />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      {renderForm()}
+    </div>
+  );
 }
