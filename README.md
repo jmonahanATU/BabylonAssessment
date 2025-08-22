@@ -36,9 +36,6 @@ It's like a digital door – you need to sign in to get inside, and once you're 
 
 ## 3. Create Environment File
 - Copy `.env.example` to `.env.local`:
-
-   ```bash
-   cp .env.example .env.local
 - Replace the placeholder values with your actual Firebase configuration:
    ```env
    NEXT_PUBLIC_FIREBASE_API_KEY=your_actual_api_key
