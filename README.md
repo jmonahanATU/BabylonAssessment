@@ -10,14 +10,17 @@ It's like a digital door – you need to sign in to get inside, and once you're 
 ---
 
 ## How to Run This App
-1. **Download the code** from this repository  
-2. **Install the pieces** the app needs:
+1. **Clone the repository** from this repository
+   ```bash
+   git clone [your-repo-url]
+   cd babylon-auth-app         
+3. **Install the pieces** the app needs:
    ```bash
    npm install
-3. **Start the app:**
+4. **Start the app:**
    ```bash
    npm run dev
-4. **Open your browser and go to http://localhost:3000**
+5. **Open your browser and go to http://localhost:3000**
 ---
 
 ## What You'll See
